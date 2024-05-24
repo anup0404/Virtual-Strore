@@ -1,0 +1,38 @@
+<div class="display" >
+    <button class="close-btn" (click)="closeBox()">X</button> 
+    <div class="container">
+      <div class="left_container">
+        <div class="image">
+          <img
+            alt="image of product"
+            [src]="product.image"
+          />
+        </div>
+      </div>
+      <div class="right_container">
+        <div class="details">
+          <h1>{{ product.name }}</h1>
+          <p>{{ product.short_details }}</p>
+          <p>{{ product.full_details }}</p>
+          <div class="rating">
+            <div class="left_rating"></div>
+            <div class="right_rating"></div>
+          </div>
+          <div class="price_quantity">
+            <div class="price">{{ product.price }}</div>
+            <p>Shipping and taxes extra</p>
+          </div>
+          <div class="quantity">
+            <p>Quantity :</p>
+            <div class="count">{{ count }}</div>
+            <div class="inc-dec">
+              <button class="add" (click)="incCount()">+</button>
+              <button class="sub" (click)="decCount()">-</button>
+            </div>
+          </div>
+          <button class="add-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

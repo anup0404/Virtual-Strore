@@ -1,0 +1,13 @@
+<div class="nav">
+  <div class="left_nav">
+    <div class="image">
+      <img [src]="logo" alt="logo of website" />
+    </div>
+  </div>
+  <div class="right_nav">
+    <div class="cart" (click)="cartDetails(productlist)">
+        <span>🛒</span> cart
+    </div>
+  </div>
+</div>
+<app-cart *ngIf="cartShow" [product]="product"></app-cart>
