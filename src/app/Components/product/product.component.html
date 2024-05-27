@@ -1,18 +1,17 @@
-
-<app-navbar [productlist]="productList"></app-navbar>
-
 <div class="container">
-    <div class="product" *ngFor="let item of productList" >
-      <img [src]="item.image" alt="Product Image" class="product-image">
-      <h2 class="product-title">{{item.name}}</h2>
-      <p class="product-price">{{item.price}}</p>
-      <p class="additional-details">Some additional details <span  class="additional" (click)="showDetails(item)">here</span></p> <!-- Simple text for additional details -->
-      <div class="product_card_footer">
-        <button class="add-to-cart">Add to Cart</button>
-        <p class="rating">{{item.rating}}⭐</p>
-      </div>
+  <div class="product" *ngFor="let item of productData.products">
+    <img [src]="item.thumbnail" alt="Product Image" class="product-image" />
+    <h2 class="product-title">{{ item.title }}</h2>
+    <p class="product-price">RS: {{ item.price }}</p>
+    <p class="additional-details">
+      Some additional details
+      <a routerLink="/product/productDetails" [state]="item"
+        ><span class="additional">here</span></a
+      >
+    </p>
+    <div class="product-card-footer">
+      <button class="add-to-cart" (click)="addToCart(item)">Add to Cart</button>
+      <p class="rating">{{ item.rating }}⭐</p>
     </div>
   </div>
- 
-  <app-product-details [product]="product" *ngIf="show"  (close)="closeProduct($event)"></app-product-details>
-<app-cart></app-cart>
+</div>

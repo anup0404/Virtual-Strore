@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductList } from 'src/app/product-list';
 
 @Component({
@@ -7,24 +8,12 @@ import { ProductList } from 'src/app/product-list';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent {
-  @Input() product!: ProductList;
-  @Input() show: boolean = false;
-  @Output() close = new EventEmitter<boolean>();
   count: number = 1;
-  incCount() {
-    if (this.count < 10) {
-      this.count++;
-    } else {
-      alert('Sorry out of stock');
-    }
-  }
-  decCount() {
-    if (this.count > 0) {
-      this.count--;
-    }
-  }
+  product: any;
+  constructor(private router: Router) {}
 
-  public closeBox(): void {
-    this.close.emit(false);
+  ngOnInit() {
+    this.product = history.state;
+    console.log(this.product);
   }
 }

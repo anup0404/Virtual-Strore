@@ -9,6 +9,8 @@ import { ProductComponent } from './Components/product/product.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { CartComponent } from './Components/cart/cart.component';
+import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { CartComponent } from './Components/cart/cart.component';
     ProductComponent,
     ProductDetailsComponent,
     NavbarComponent,
-    CartComponent
+    CartComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule 
+    FormsModule ,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,38 +1,42 @@
-<div class="display" >
-    <button class="close-btn" (click)="closeBox()">X</button> 
-    <div class="container">
-      <div class="left_container">
-        <div class="image">
-          <img
-            alt="image of product"
-            [src]="product.image"
-          />
-        </div>
+<div class="display">
+  <div class="container">
+    <div class="left-container">
+      <div class="image">
+        <img alt="image of product" [src]="product.thumbnail" />
       </div>
-      <div class="right_container">
-        <div class="details">
-          <h1>{{ product.name }}</h1>
-          <p>{{ product.short_details }}</p>
-          <p>{{ product.full_details }}</p>
-          <div class="rating">
-            <div class="left_rating"></div>
-            <div class="right_rating"></div>
-          </div>
-          <div class="price_quantity">
-            <div class="price">{{ product.price }}</div>
-            <p>Shipping and taxes extra</p>
-          </div>
-          <div class="quantity">
-            <p>Quantity :</p>
-            <div class="count">{{ count }}</div>
-            <div class="inc-dec">
-              <button class="add" (click)="incCount()">+</button>
-              <button class="sub" (click)="decCount()">-</button>
-            </div>
-          </div>
-          <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="right-container">
+      <div class="details">
+        <h1>{{ product.title }}</h1>
+        <p>{{ product.description }}</p>
+        <p>{{ product.returnPolicy }}</p>
+        <div class="rating">
+          <div class="left-rating"></div>
+          <div class="right-rating"></div>
         </div>
+        <div class="price-quantity">
+          <div class="price">
+            <strong>Rs: {{ product.price }}</strong>
+          </div>
+          <p>Shipping and taxes extra</p>
+        </div>
+        <button class="add-cart">Add to Cart</button>
+      </div>
+
+      <div class="details-section">
+        <h2>Product Details</h2>
+        <ul>
+          <li>Brand: {{ product.brand }}</li>
+          <li>weight: {{ product.weight }}</li>
+          <li>warranty: {{ product.warrantyInformation }}</li>
+          <li>Availability: {{ product.availabilityStatus }}</li>
+          <li>
+            Dimensions : [ width : {{ product.dimensions.width }} height:
+            {{ product.dimensions.height }} depth :
+            {{ product.dimensions.depth }} ]
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  
+</div>

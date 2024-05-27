@@ -1,48 +1,81 @@
+/* Global Navigation Styling */
 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 15px 20px; 
-    height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 15px 20px;
+  height: 60px;
+}
+
+.left_nav {
+  flex: 1;
+}
+
+.right_nav {
+  display: flex;
+  align-items: center;
+}
+
+.image img {
+  max-width: 150px;
+  height: auto; /* Specify 'auto' for maintaining aspect ratio */
+}
+
+/* Media Query for Small Screens */
+@media screen and (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
   }
-  
-  .left_nav {
-    flex: 1;
-  }
-  
+
   .right_nav {
-    display: flex;
-    align-items: center;
+    margin-top: 10px;
   }
-  
-  .image img {
-    max-width: 150px; 
-    height: 100;
+
+  .right_nav ul li {
+    margin-left: 0; /* Remove margin for list items */
+    margin-top: 10px; /* Add spacing between list items */
   }
-  
-  .cart {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .cart span {
-    font-size: 20px;
-    margin-right: 5px;
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .nav {
-      flex-direction: column;
-      text-align: center;
-      height: auto; 
-    }
-  
-    .right_nav {
-      margin-top: 10px;
-    }
-  }
-  
+}
+
+/* Right Navigation Styling */
+.right_nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.right_nav ul li {
+  display: inline-block;
+  margin-left: 20px; /* Adjust margin between list items */
+}
+
+.right_nav ul li:first-child {
+  margin-left: 0; /* Remove margin for the first list item */
+}
+
+.right_nav ul li a {
+  text-decoration: none;
+  color: #fff; /* Adjust link color */
+}
+
+.right_nav ul li a:hover {
+  color: #ccc; /* Adjust link color on hover */
+}
+
+.cart {
+  padding: 5px 10px;
+  border: 1px solid #fff; /* Adjust border color */
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: black;
+}
+
+.cart span {
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-right: 5px;
+}

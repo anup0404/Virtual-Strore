@@ -1,13 +1,20 @@
 <div class="nav">
-  <div class="left_nav">
-    <div class="image">
-      <img [src]="logo" alt="logo of website" />
-    </div>
+  <div class="left-nav">
+    <a routerLink="/product">
+      <div class="image">
+        <img [src]="logo" alt="logo of website" />
+      </div>
+    </a>
   </div>
   <div class="right_nav">
-    <div class="cart" (click)="cartDetails(productlist)">
-        <span>🛒</span> cart
-    </div>
+    <ul>
+      <li>
+        <a routerLink="/cart">
+          <div class="cart"><span>🛒</span> cart <span>{{totalItem}}</span></div>
+        </a>
+      </li>
+      <li><a routerLink="/profile"> Profile </a></li>
+    </ul>
   </div>
 </div>
-<app-cart *ngIf="cartShow" [product]="product"></app-cart>
+<!-- <app-cart *ngIf="cartShow" [product]="product"></app-cart> (click)="cartDetails(productlist)" -->
