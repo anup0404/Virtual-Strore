@@ -10,33 +10,42 @@ import { ProductList } from 'src/app/product-list';
 export class CartComponent {
   quantity: number = 1;
   public product: any = [];
-  public grandTotal: number = 0;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.getProducts().subscribe((res) => {
-      this.product = res;
-      this.grandTotal = this.cartService.getTotalPrice();
-    });
+    this.product = this.cartService.cartItemList;
   }
+
   removeItem(item: any) {
     this.cartService.removeCartItem(item);
   }
-  emptyCart() {
-    this.cartService.removeAllCart();
+
+  emptyCartItems() {
+    this.cartService.removeAllCartItem();
+    window.location.reload();
   }
-  public increment(): void {
-    if (this.quantity <= 10) {
-      this.quantity++;
-    } else {
-      alert('Sorry out of stock');
-    }
+ 
+  subTotalPrice():number{
+    return Number(this.cartService.subTotal().toFixed(2))
+  }
+  grandTotal():number{
+   return this.subTotalPrice()+50
   }
 
-  public decrement(): void {
-    if (this.quantity > 0) {
-      this.quantity--;
+ 
+  public increment(item:any): void {
+    if(item.minimumOrderQuantity<=item.stock){
+      item.minimumOrderQuantity++;
+      this.cartService.totalItems++;
+    }
+   
+  }
+
+  public decrement(item:any): void {
+    if(item.minimumOrderQuantity>0){
+      item.minimumOrderQuantity--;
+      this.cartService.totalItems--;
     }
   }
 }

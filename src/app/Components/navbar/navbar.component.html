@@ -1,20 +1,25 @@
 <div class="nav">
   <div class="left-nav">
-    <a routerLink="/product">
+    <a routerLink="/product" [state]="{searchListItem:searchList}">
       <div class="image">
         <img [src]="logo" alt="logo of website" />
       </div>
     </a>
   </div>
-  <div class="right_nav">
+  <div class="center-nav">
+    <div class="search-box">
+      <input type="text" placeholder="Search..." class="search-input" [(ngModel)]="searchList" (keyup)="search($event)">
+      <button class="search-button">Search</button>
+    </div>
+  </div>
+  <div class="right-nav">
     <ul>
       <li>
         <a routerLink="/cart">
-          <div class="cart"><span>🛒</span> cart <span>{{totalItem}}</span></div>
+          <div class="cart"><span>🛒</span> cart <span>{{gettotalItems()}}</span></div>
         </a>
       </li>
       <li><a routerLink="/profile"> Profile </a></li>
     </ul>
   </div>
 </div>
-<!-- <app-cart *ngIf="cartShow" [product]="product"></app-cart> (click)="cartDetails(productlist)" -->

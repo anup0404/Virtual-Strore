@@ -1,51 +1,47 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-
   public cartItemList: any = [];
-  public productList = new BehaviorSubject<any>([]);
-
+  totalItems: number = 0;
   constructor() {}
 
-  getProducts() {
-    return this.productList.asObservable();
-  }
-
-  setProduct(product: any) {
-    this.cartItemList.push(...product);
-    this.productList.next(product);
-  }
-
   addtoCart(product: any) {
-    if(product.id!=this.cartItemList.id){
+    const isDuplicate = this.cartItemList.some(
+      (item: any) => item.id === product.id
+    );
+    if (!isDuplicate) {
       this.cartItemList.push(product);
+      this.totalItems+=product.minimumOrderQuantity;
+    } else {
+      this.totalItems++;
     }
-    this.productList.next(this.cartItemList);
-    this.getTotalPrice();
-    console.log(this.cartItemList)
   }
-  getTotalPrice():number{
-    let grandTotal = 0;
-    this.cartItemList.map((a: any) => {
-      grandTotal += a.total;
-    });
-    return grandTotal;
-  }
+
   removeCartItem(product: any) {
     this.cartItemList.map((a: any, index: any) => {
       if (product.id === a.id) {
         this.cartItemList.splice(index, 1);
+        this.totalItems-=a.minimumOrderQuantity;
       }
     });
-    this.productList.next(this.cartItemList);
   }
 
-  removeAllCart(){
-    this.cartItemList=[];
-    this.productList.next(this.cartItemList)
+  removeAllCartItem() {
+    this.cartItemList = [];
   }
+
+  subTotal():number{
+    let subtotal=0;
+    this.cartItemList.forEach((item:any) => {
+      subtotal+=item.price*item.minimumOrderQuantity;
+    });
+    return subtotal;
+  }
+  minOrderQuantiy(product:any):number{
+ return this.cartItemList.minOrderQuantiy;
+  }
+
 }

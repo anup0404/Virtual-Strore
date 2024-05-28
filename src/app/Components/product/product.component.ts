@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/Services/cart.service';
 import { PhonesDataService } from 'src/app/Services/phones-data.service';
 
@@ -8,20 +9,40 @@ import { PhonesDataService } from 'src/app/Services/phones-data.service';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent {
-  constructor(private phoneData: PhonesDataService,private cartService:CartService) {}
+  private product_url: string = 'https://dummyjson.com/products/search?q=phone';
+  searchList:string="";
   productData: any;
-
-  ngOnInit() {
-    this.phoneData.getPhoneData().subscribe(
-      (response) => {
-        this.productData = response;
-        console.log(this.productData.product);
-      },
-      (error) => console.log(error)
-    );
+  constructor(
+    private phoneData: PhonesDataService,
+    private cartService: CartService,
+    private router:Router
+  ) {
   }
 
-  addToCart(item:any){
+
+  ngOnInit() {
+    // this.route.paramMap.subscribe(params => {
+    //   this.searchList = params.get('searchList') || '';
+    //   console.log("product :" ,this.searchList)
+    // });
+    
+    const navigation = this.router.getCurrentNavigation();
+    console.log(navigation);
+    if (navigation && navigation.extras.state) {
+        this.searchList = navigation.extras.state.example;
+      
+  }
+  
+
+    this.phoneData.getData(this.product_url).subscribe((response) => {
+      this.productData = response;
+      console.log(this.productData.product);
+    });
+    
+  }
+ 
+
+  addToCart(item: any) {
     this.cartService.addtoCart(item);
   }
 }

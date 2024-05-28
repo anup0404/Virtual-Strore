@@ -11,6 +11,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterItemsPipe } from './shared/filter-items.pipe';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,15 @@ import { HttpClientModule } from '@angular/common/http';
     ProductDetailsComponent,
     NavbarComponent,
     CartComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FilterItemsPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule ,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

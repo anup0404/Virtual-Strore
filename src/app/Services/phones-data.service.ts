@@ -7,8 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class PhonesDataService {
   constructor(private http: HttpClient) {}
 
-  getPhoneData() {
-    const url = 'https://dummyjson.com/products/search?q=phone';
+  getData(url: string) {
     return this.http.get(url);
   }
 }

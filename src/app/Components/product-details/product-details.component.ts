@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { CartService } from 'src/app/Services/cart.service';
 import { ProductList } from 'src/app/product-list';
 
 @Component({
@@ -10,10 +11,14 @@ import { ProductList } from 'src/app/product-list';
 export class ProductDetailsComponent {
   count: number = 1;
   product: any;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cartServices: CartService) {}
 
   ngOnInit() {
     this.product = history.state;
-    console.log(this.product);
   }
+
+  addToCart(item: any) {
+    this.cartServices.addtoCart(item);
+  }
+
 }
