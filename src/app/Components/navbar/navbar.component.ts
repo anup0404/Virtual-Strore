@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/Services/cart.service';
 import { ProductList } from 'src/app/product-list';
 
@@ -20,9 +21,11 @@ export class NavbarComponent {
   gettotalItems() :number{
   return this.cartServices.totalItems;
  }
- search(event:any){
- this.searchList=event.target.value;
- console.log(this.searchList)
- }
+
+ search(event: any) {
+  this.searchList = event.target.value;
+  console.log(this.searchList);
+ 
+}
 
 }

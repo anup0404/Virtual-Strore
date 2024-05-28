@@ -12,7 +12,7 @@ export class FilterItemsPipe implements PipeTransform {
     value.forEach((a: any) => {
       if (
         a[titleName]
-          .ttrim()
+          .trim()
           .toLowerCase()
           .includes(filterItems.toLocaleLowerCase())
       ) {

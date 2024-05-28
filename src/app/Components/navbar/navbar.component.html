@@ -1,6 +1,6 @@
 <div class="nav">
   <div class="left-nav">
-    <a routerLink="/product" [state]="{searchListItem:searchList}">
+    <a routerLink="/product" [state]="{ search: searchList }">
       <div class="image">
         <img [src]="logo" alt="logo of website" />
       </div>
@@ -9,7 +9,6 @@
   <div class="center-nav">
     <div class="search-box">
       <input type="text" placeholder="Search..." class="search-input" [(ngModel)]="searchList" (keyup)="search($event)">
-      <button class="search-button">Search</button>
     </div>
   </div>
   <div class="right-nav">
