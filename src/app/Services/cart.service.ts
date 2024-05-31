@@ -14,7 +14,7 @@ export class CartService {
     );
     if (!isDuplicate) {
       this.cartItemList.push(product);
-      this.totalItems+=product.minimumOrderQuantity;
+      this.totalItems += product.minimumOrderQuantity;
     } else {
       this.totalItems++;
     }
@@ -24,7 +24,7 @@ export class CartService {
     this.cartItemList.map((a: any, index: any) => {
       if (product.id === a.id) {
         this.cartItemList.splice(index, 1);
-        this.totalItems-=a.minimumOrderQuantity;
+        this.totalItems -= a.minimumOrderQuantity;
       }
     });
   }
@@ -33,15 +33,14 @@ export class CartService {
     this.cartItemList = [];
   }
 
-  subTotal():number{
-    let subtotal=0;
-    this.cartItemList.forEach((item:any) => {
-      subtotal+=item.price*item.minimumOrderQuantity;
+  subTotal(): number {
+    let subtotal = 0;
+    this.cartItemList.forEach((item: any) => {
+      subtotal += item.price * item.minimumOrderQuantity;
     });
     return subtotal;
   }
-  minOrderQuantiy(product:any):number{
- return this.cartItemList.minOrderQuantiy;
+  minOrderQuantiy(product: any): number {
+    return this.cartItemList.minOrderQuantiy;
   }
-
 }

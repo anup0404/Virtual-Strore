@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './Components/search/search.component';
@@ -12,6 +11,10 @@ import { CartComponent } from './Components/cart/cart.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterItemsPipe } from './shared/filter-items.pipe';
+import { ProductFormComponent } from './Components/product-form/product-form.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ProductUpdateComponent } from './Components/product-update/product-update.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,18 @@ import { FilterItemsPipe } from './shared/filter-items.pipe';
     NavbarComponent,
     CartComponent,
     PageNotFoundComponent,
-    FilterItemsPipe
+    FilterItemsPipe,
+    ProductFormComponent,
+    ProfileComponent,
+    ProductUpdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule ,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

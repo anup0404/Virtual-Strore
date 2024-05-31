@@ -9,7 +9,7 @@ import { ProductList } from 'src/app/product-list';
 })
 export class CartComponent {
   quantity: number = 1;
-  public product: any = [];
+  public product: ProductList[] = [];
 
   constructor(private cartService: CartService) {}
 
@@ -25,25 +25,23 @@ export class CartComponent {
     this.cartService.removeAllCartItem();
     window.location.reload();
   }
- 
-  subTotalPrice():number{
-    return Number(this.cartService.subTotal().toFixed(2))
+
+  subTotalPrice(): number {
+    return Number(this.cartService.subTotal().toFixed(2));
   }
-  grandTotal():number{
-   return this.subTotalPrice()+50
+  grandTotal(): number {
+    return this.subTotalPrice() + 50;
   }
 
- 
-  public increment(item:any): void {
-    if(item.minimumOrderQuantity<=item.stock){
+  public increment(item: any): void {
+    if (item.minimumOrderQuantity <= item.stock) {
       item.minimumOrderQuantity++;
       this.cartService.totalItems++;
     }
-   
   }
 
-  public decrement(item:any): void {
-    if(item.minimumOrderQuantity>0){
+  public decrement(item: any): void {
+    if (item.minimumOrderQuantity > 0) {
       item.minimumOrderQuantity--;
       this.cartService.totalItems--;
     }

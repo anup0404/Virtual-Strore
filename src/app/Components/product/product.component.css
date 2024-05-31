@@ -4,6 +4,17 @@
   justify-content: center;
   position: relative;
 }
+.min-order-quantity {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1d1616;
+  margin: 10px 0;
+  padding: 5px;
+  background-color: #7bc0b5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
 
 .additional {
   color: red;
@@ -40,7 +51,9 @@
   margin-top: 5px;
 }
 
-.add-to-cart {
+.add-to-cart,
+.delete,
+.update {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -49,6 +62,12 @@
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;
+}
+.delete {
+  background-color: red;
+}
+.update {
+  background-color: green;
 }
 
 .add-to-cart:hover {

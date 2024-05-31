@@ -10,15 +10,15 @@ import { ProductList } from 'src/app/product-list';
 })
 export class ProductDetailsComponent {
   count: number = 1;
-  product: any;
+  product:any;
   constructor(private router: Router, private cartServices: CartService) {}
 
   ngOnInit() {
     this.product = history.state;
+    console.log("details :",this.product)
   }
 
   addToCart(item: any) {
     this.cartServices.addtoCart(item);
   }
-
 }

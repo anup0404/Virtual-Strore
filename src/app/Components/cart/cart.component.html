@@ -5,8 +5,7 @@
         <div class="cart-items">
           <ul class="cart-list">
             <li class="cart-item" *ngFor="let item of product; let i = index">
-            
-              <div class="cart-item-image" >
+              <div class="cart-item-image">
                 <span class="item-number">{{ i + 1 }}</span>
                 <img
                   class="item-image"
@@ -15,7 +14,7 @@
                 />
               </div>
 
-              <div class="cart-item-details" >
+              <div class="cart-item-details">
                 <div class="cart-item-info">
                   <p class="item-name">{{ item.title }}</p>
                   <p class="item-size">{{ item.description }}</p>
@@ -37,18 +36,22 @@
               </div>
               <div class="quantity">
                 <p>Min. Quantity :</p>
-                <div class="count">{{ item.minimumOrderQuantity<=item.stock? item.minimumOrderQuantity:item.minimumOrderQuantity +'(out of stock)' }}</div>
+                <div class="count">
+                  {{
+                    item.minimumOrderQuantity <= item.stock
+                      ? item.minimumOrderQuantity
+                      : item.minimumOrderQuantity + "(out of stock)"
+                  }}
+                </div>
                 <div class="inc-dec">
                   <button class="add" (click)="increment(item)">+</button>
                   <button class="sub" (click)="decrement(item)">-</button>
                 </div>
               </div>
-            
             </li>
-          
           </ul>
         </div>
-      
+
         <div class="remove-order-button">
           <button
             type="button"
@@ -62,7 +65,7 @@
         <div class="cart-summary">
           <div class="subtotal">
             <p class="subtotal-label">Subtotal</p>
-            <p class="subtotal-amount">{{subTotalPrice()}}</p>
+            <p class="subtotal-amount">{{ subTotalPrice() }}</p>
           </div>
           <div class="shipping">
             <p class="shipping-label">Shipping</p>
@@ -70,7 +73,7 @@
           </div>
           <div class="total">
             <p class="total-label">Total</p>
-            <p class="total-amount">{{grandTotal()}}</p>
+            <p class="total-amount">{{ grandTotal() }}</p>
           </div>
         </div>
 
