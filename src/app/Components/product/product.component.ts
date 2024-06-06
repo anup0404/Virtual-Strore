@@ -19,7 +19,6 @@ export class ProductComponent implements OnInit {
   updateProductId: number = -1;
   showUpdateForm: boolean = false;
 
-
   constructor(
     private phoneData: PhonesDataService,
     private cartService: CartService,
@@ -60,9 +59,8 @@ export class ProductComponent implements OnInit {
     this.updateProductId = index;
     this.showUpdateForm = true;
   }
-  applyProductUpdate(updateProductData:ProductList){
-   this.productData[this.updateProductId]=updateProductData;
-   this.showUpdateForm=false;
+  applyProductUpdate(updateProductData: ProductList) {
+    this.productData[this.updateProductId] = updateProductData;
+    this.showUpdateForm = false;
   }
-
 }

@@ -10,7 +10,7 @@ import { ProductList } from 'src/app/product-list';
 })
 export class ProductDetailsComponent {
   count: number = 1;
-  product:any;
+  product!:ProductList;
   constructor(private router: Router, private cartServices: CartService) {}
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class ProductDetailsComponent {
     console.log("details :",this.product)
   }
 
-  addToCart(item: any) {
+  addToCart(item: ProductList) {
     this.cartServices.addtoCart(item);
   }
 }

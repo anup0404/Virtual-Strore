@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
+import { ProductList } from '../product-list';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  public cartItemList: any = [];
+  public cartItemList: ProductList[] = [];
   totalItems: number = 0;
   constructor() {}
 
-  addtoCart(product: any) {
+  addtoCart(product: ProductList) {
     const isDuplicate = this.cartItemList.some(
-      (item: any) => item.id === product.id
+      (item: ProductList) => item.id === product.id
     );
     if (!isDuplicate) {
       this.cartItemList.push(product);
@@ -20,7 +21,7 @@ export class CartService {
     }
   }
 
-  removeCartItem(product: any, index: number) {
+  removeCartItem(product: ProductList, index: number) {
     this.cartItemList.splice(index, 1);
     this.totalItems -= product.minimumOrderQuantity;
   }
@@ -31,12 +32,9 @@ export class CartService {
 
   subTotal(): number {
     let subtotal = 0;
-    this.cartItemList.forEach((item: any) => {
+    this.cartItemList.forEach((item: ProductList) => {
       subtotal += item.price * item.minimumOrderQuantity;
     });
     return subtotal;
-  }
-  minOrderQuantiy(product: any): number {
-    return this.cartItemList.minOrderQuantiy;
   }
 }

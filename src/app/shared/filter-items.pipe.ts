@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ProductList } from '../product-list';
 
 @Pipe({
   name: 'filterItems',
 })
 export class FilterItemsPipe implements PipeTransform {
-  transform(value: any[], filterTerm: string): any[] {
+  transform(value: ProductList[], filterTerm: string): ProductList[] {
     if (!value || !filterTerm.trim()) {
       return value;
     }
@@ -14,7 +15,7 @@ export class FilterItemsPipe implements PipeTransform {
     );
   }
 
-  private itemContainsSearchTerm(item: any, searchTerm: string): boolean {
+  private itemContainsSearchTerm(item: ProductList, searchTerm: string): boolean {
     return Object.values(item).some((value) => {
       return (
         typeof value === 'string' && value.toLowerCase().includes(searchTerm)
