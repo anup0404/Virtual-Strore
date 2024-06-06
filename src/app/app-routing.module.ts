@@ -22,16 +22,6 @@ const routes: Routes = [
         path: 'product-details',
         component: ProductDetailsComponent,
       },
-      {
-        path: ':id',
-        component: ProductComponent,
-      },
-     
-      
-      {
-        path: ':search',
-        component: ProductComponent,
-      },
     ],
   },
 
@@ -53,7 +43,10 @@ const routes: Routes = [
       },
     ],
   },
-  {path:'profile/profile-form/:id/update', component:ProductUpdateComponent},
+  // {
+  //   path: 'profile/profile-form/:id/update',
+  //   component: ProductUpdateComponent,
+  // },
   {
     path: '**',
     component: PageNotFoundComponent,

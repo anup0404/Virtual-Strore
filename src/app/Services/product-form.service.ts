@@ -10,18 +10,10 @@ export class ProductFormService {
   public productId!:number;
 
 
-  storeData(productData: any[]) {
+    addProducts(productData: any[]) {
     this.productFormData.forEach((item: any) => {
       productData.unshift(item);
     });
     
-  }
-  
-
-
- storeUpdatedData(updatedProduct: any, productId: number): void {
-    this.updatedProductData = updatedProduct;
-    this.productId = productId;
-  }
- 
+  } 
 }

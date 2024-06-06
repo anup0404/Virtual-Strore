@@ -29,13 +29,13 @@
                 <button
                   type="button"
                   class="remove-all-btn"
-                  (click)="removeItem(item)"
+                  (click)="removeItem(item,i)"
                 >
                   Remove
                 </button>
               </div>
               <div class="quantity">
-                <p>Min. Quantity :</p>
+                <p>Quantity :</p>
                 <div class="count">
                   {{
                     item.minimumOrderQuantity <= item.stock
@@ -44,8 +44,8 @@
                   }}
                 </div>
                 <div class="inc-dec">
-                  <button class="add" (click)="increment(item)">+</button>
-                  <button class="sub" (click)="decrement(item)">-</button>
+                  <button class="add" (click)="increment(item,i)">+</button>
+                  <button class="sub" (click)="decrement(item,i)">-</button>
                 </div>
               </div>
             </li>

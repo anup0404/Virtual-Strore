@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { CartService } from 'src/app/Services/cart.service';
 
 @Component({
@@ -13,11 +13,7 @@ export class NavbarComponent implements OnInit {
   logo: string =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc0C8x7qlSIc5fj8z60gSScsMPolwC2Ws2vw&s';
   // public showSearchBox: boolean = false;
-  constructor(
-    private cartService: CartService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -26,8 +22,11 @@ export class NavbarComponent implements OnInit {
   }
 
   search(): void {
-    this.router.navigate(['/product'], {
-      queryParams: { search: this.searchList },
-    });
+    const currentUrl = this.router.url;
+    if (currentUrl.includes('/product')) {
+      this.router.navigate(['/product'], {
+        queryParams: { search: this.searchList },
+      });
+    }
   }
 }

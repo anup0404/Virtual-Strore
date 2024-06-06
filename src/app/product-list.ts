@@ -3,7 +3,7 @@ export interface ProductList {
   thumbnail: string;
   title: string;
   price: number;
-  rating: number;
+  rating: number |null |undefined;
   description: string;
   brand: string;
   weight: number;
@@ -13,6 +13,11 @@ export interface ProductList {
   width: number;
   height: number;
   depth: number;
-  stock:number;
-  minimumOrderQuantity:number;
+  stock: number;
+  minimumOrderQuantity: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
 }

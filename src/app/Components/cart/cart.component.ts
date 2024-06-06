@@ -17,11 +17,11 @@ export class CartComponent {
     this.product = this.cartService.cartItemList;
   }
 
-  removeItem(item: any) {
-    this.cartService.removeCartItem(item);
+  removeItem(item: ProductList, index: number): void {
+    this.cartService.removeCartItem(item, index);
   }
 
-  emptyCartItems() {
+  emptyCartItems(): void {
     this.cartService.removeAllCartItem();
     window.location.reload();
   }
@@ -30,20 +30,26 @@ export class CartComponent {
     return Number(this.cartService.subTotal().toFixed(2));
   }
   grandTotal(): number {
-    return this.subTotalPrice() + 50;
+    if (this.product) {
+      return this.subTotalPrice() + 50;
+    }
+    return 0;
   }
 
-  public increment(item: any): void {
+  public increment(item: ProductList, index: number): void {
     if (item.minimumOrderQuantity <= item.stock) {
       item.minimumOrderQuantity++;
       this.cartService.totalItems++;
     }
   }
 
-  public decrement(item: any): void {
+  public decrement(item: ProductList, index: number): void {
     if (item.minimumOrderQuantity > 0) {
       item.minimumOrderQuantity--;
       this.cartService.totalItems--;
+    }
+    if (item.minimumOrderQuantity === 0) {
+      this.cartService.removeCartItem(item, index);
     }
   }
 }

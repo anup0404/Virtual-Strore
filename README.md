@@ -143,3 +143,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
         'The Asus ROG Phone 5 is built for gaming enthusiasts, offering unmatched performance, advanced cooling technology, and a range of gaming-centric features for the ultimate gaming experience on a smartphone.',
     },
   ];
+
+
+
+
+
+
+
+
+   if (this.productFormService.productId != -1) {
+            this.productData[this.productFormService.productId] =
+              this.productFormService.updatedProductData;
+          }

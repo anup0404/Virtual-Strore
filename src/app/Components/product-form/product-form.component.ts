@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductFormService } from 'src/app/Services/product-form.service';
@@ -12,32 +12,35 @@ import { ProductFormService } from 'src/app/Services/product-form.service';
 export class ProductFormComponent {
   constructor(
     private fb: FormBuilder,
-    private productformservice: ProductFormService,
-    private router: Router
+    private router: Router,
+    private productformservice:ProductFormService
   ) {}
 
   productForm = this.fb.group({
-    thumbnail: [''],
-    title: [''],
-    price: [null],
-    rating: [null],
-    description: [''],
-    brand: [''],
-    weight: [null],
-    returnPolicy: [''],
-    warrantyInformation: [''],
-    availabilityStatus: ['InStock'],
-    minimumOrderQuantity: [1],
-    stock: [1],
+    thumbnail: ['', Validators.required],
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    price: [null, [Validators.required, Validators.min(0.01)]],
+    rating: [null, [Validators.required, Validators.min(0), Validators.max(5)]],
+    description: ['', Validators.required],
+    brand: ['', Validators.required],
+    weight: [null, [Validators.required, Validators.min(0)]],
+    returnPolicy: ['', Validators.required],
+    warrantyInformation: ['', Validators.required],
+    availabilityStatus: ['InStock', Validators.required],
+    minimumOrderQuantity: [1, [Validators.required, Validators.min(1)]],
+    stock: [1, [Validators.required, Validators.min(0)]],
     dimensions: this.fb.group({
-      width: [null],
-      height: [null],
-      depth: [null],
-    }),
-  });
+      width: [null, [Validators.required, Validators.min(0)]],
+      height: [null, [Validators.required, Validators.min(0)]],
+      depth: [null, [Validators.required, Validators.min(0)]],
+    })
+  })
+  
+
 
   onSubmit() {
     this.productformservice.productFormData.unshift(this.productForm.value);
-    this.router.navigate(['/product']);
+    const productFormData=this.productForm.value;
+    this.router.navigate(['/product'], {state:{productFormData:productFormData}});
   }
 }

@@ -11,7 +11,7 @@
       <a [routerLink]="['/product', 'product-details']" [state]="item"
         ><span class="additional">here</span></a
       >
-    </p> 
+    </p>
     <p class="min-order-quantity">
       Min Order Quantity: {{ item.minimumOrderQuantity }}
     </p>
@@ -21,9 +21,13 @@
     </div>
     <div class="product-card-footer">
       <button class="delete" (click)="delete(id)">Delete</button>
-      <a [routerLink]="'/profile/profile-form/' + id + '/update'" [state]="item"
-        ><button class="update">Update</button></a
-      >
+
+      <button class="update" (click)="updateProduct(item, id)">Update</button>
     </div>
   </div>
 </div>
+<app-product-update
+  *ngIf="showUpdateForm"
+  [updateProductData]="updateProductData"
+  (applyProductUpdate)="applyProductUpdate($event)"
+></app-product-update>

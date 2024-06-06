@@ -20,13 +20,9 @@ export class CartService {
     }
   }
 
-  removeCartItem(product: any) {
-    this.cartItemList.map((a: any, index: any) => {
-      if (product.id === a.id) {
-        this.cartItemList.splice(index, 1);
-        this.totalItems -= a.minimumOrderQuantity;
-      }
-    });
+  removeCartItem(product: any, index: number) {
+    this.cartItemList.splice(index, 1);
+    this.totalItems -= product.minimumOrderQuantity;
   }
 
   removeAllCartItem() {

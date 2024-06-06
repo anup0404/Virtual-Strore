@@ -15,6 +15,11 @@ export class ProductComponent implements OnInit {
     'https://mocki.io/v1/b5e02b26-a900-4db5-b4a6-381965b92e4f';
   productData: ProductList[] = [];
   searchList: string = '';
+  updateProductData!: ProductList;
+  updateProductId: number = -1;
+  showUpdateForm: boolean = false;
+
+
   constructor(
     private phoneData: PhonesDataService,
     private cartService: CartService,
@@ -25,9 +30,8 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.searchList = params['search'] || '';
-      console.log(params);
-      this.fetchData();
     });
+    this.fetchData();
   }
 
   fetchData(): void {
@@ -35,11 +39,7 @@ export class ProductComponent implements OnInit {
     this.phoneData.getData(productUrl).subscribe({
       next: (response: any) => {
         this.productData = response.products || [];
-        this.productFormService.storeData(this.productData);
-        if (this.productFormService.productId != -1) {
-          this.productData[this.productFormService.productId] =
-            this.productFormService.updatedProductData;
-        }
+        this.productFormService.addProducts(this.productData);
       },
       error: (err: any) => {
         console.error('Error fetching product data', err);
@@ -47,11 +47,22 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  addToCart(item: any): void {
+  addToCart(item: ProductList): void {
     this.cartService.addtoCart(item);
   }
 
   delete(index: number): void {
     this.productData.splice(index, 1);
   }
+
+  updateProduct(item: ProductList, index: number): void {
+    this.updateProductData = item;
+    this.updateProductId = index;
+    this.showUpdateForm = true;
+  }
+  applyProductUpdate(updateProductData:ProductList){
+   this.productData[this.updateProductId]=updateProductData;
+   this.showUpdateForm=false;
+  }
+
 }
